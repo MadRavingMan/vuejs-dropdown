@@ -5,25 +5,23 @@
 
 <template>
   <div :id="dropdownName + '_dropdown'">
-    <div class="dropdown" @click="toggleExpansion(); validateChecks();">
-      <div>
-        <h1>{{ dropdownName }}</h1>
-      </div>
-      <div>
-        <h1 class="marked-number">{{ markedItems }}</h1>
-      </div>
-      <div>
-        <h1>▼</h1>
-      </div>
-    </div>
-    <div class="droplist" :class="{ expanded: isExpanded }">
-      <ul>
-        <li v-for="item in dropListItems" :key="item">
-          <input type="checkbox" :name="item" v-on:change="checkboxsCounter()" />
-          <label :for="item">{{ item }}</label>
-        </li>
-      </ul>
-    </div>
+    <b-dropdown size="lg" variant="secondary text-dark" offset="-22" hide="checkboxsCounter">
+      <template v-slot:button-content>
+        {{ dropdownName }}
+        <span class="marked-number">{{ markedItems }}</span>
+      </template>
+      <b-dropdown-text v-for="item in dropListItems" :key="item" variant="outline-secondary">
+        <p-check class="p-svg p-curve" color="warning">
+          <svg slot="extra" class="svg svg-icon" viewBox="0 0 20 20">
+            <path
+              d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"
+              style="stroke: white;fill:white"
+            />
+          </svg>
+          {{ item }}
+        </p-check>
+      </b-dropdown-text>
+    </b-dropdown>
   </div>
 </template>
 
@@ -36,14 +34,10 @@ export default {
   },
   data() {
     return {
-      markedItems: "-",
-      isExpanded: false
+      markedItems: "-"
     };
   },
   methods: {
-    toggleExpansion() {
-      this.isExpanded = !this.isExpanded;
-    },
     checkboxsCounter() {
       var container = document.querySelector(
         "#" + this.dropdownName + "_dropdown"
@@ -62,34 +56,13 @@ export default {
 </script>
 
 <style scoped>
-.dropdown {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  background: lightgray;
-  width: 200px;
-  border-radius: 15px;
+.dropdownbtn {
+  background-color: lightgray !important;
 }
-
 .marked-number {
   background: gray;
-  border-radius: 15px;
-  padding: 10px;
-}
-
-.droplist {
-  width: 200px;
-  display: none;
-}
-
-ul {
-  box-shadow: 0px 0px 5px;
-  border-radius: 15px;
-  text-align: left;
-  list-style-type: none;
-}
-
-.expanded {
-  display: block;
+  border-radius: 10px;
+  padding: 5px 10px;
+  color: white;
 }
 </style>

@@ -1,6 +1,12 @@
 <template>
   <div id="app">
-    <Dropdown dropdownName="Tag" :dropListItems="TagDropdownItems" />
+    <b-container class="bv-example-row">
+      <b-row>
+        <b-col sm="3" offset="4">
+          <Dropdown dropdownName="Tag" :dropListItems="TagDropdownItems" />
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
