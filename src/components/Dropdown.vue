@@ -1,17 +1,15 @@
-// TODO : checkbox styling color #FF8B28, add bootstrap
-// TODO : borders between items
+// TODO : styling
 // TODO : Modal for alert
-// TODO : Close on click outside
 
 <template>
   <div :id="dropdownName + '_dropdown'">
-    <b-dropdown size="lg" variant="secondary text-dark" offset="-22" hide="checkboxsCounter">
+    <b-dropdown size="lg" variant="secondary text-dark" offset="-22" @hide="validateChecks()">
       <template v-slot:button-content>
         {{ dropdownName }}
         <span class="marked-number">{{ markedItems }}</span>
       </template>
-      <b-dropdown-text v-for="item in dropListItems" :key="item" variant="outline-secondary">
-        <p-check class="p-svg p-curve" color="warning">
+      <b-dropdown-text v-for="item in dropListItems" :key="item">
+        <p-check class="p-svg p-curve" color="warning" @change="checkboxsCounter()">
           <svg slot="extra" class="svg svg-icon" viewBox="0 0 20 20">
             <path
               d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"
